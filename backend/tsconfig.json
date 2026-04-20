@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    // === Módulos ===
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolvePackageJsonExports": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+
+    // === Target y emisión ===
+    "target": "ES2023",
+    "lib": ["ES2024"],
+    "types": ["node"],
+    "outDir": "./dist",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "removeComments": false, // false = conservas JSDoc en .d.ts
+    "incremental": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "ignoreDeprecations": "6.0",
+
+    // === Decoradores (obligatorio en NestJS) ===
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    // === Strict core ===
+    "strict": true, // habilita todo el bloque de abajo
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true, // catch (e) → e es unknown, no any
+    "alwaysStrict": true, // "use strict" en cada archivo emitido
+
+    // === Checks extra de calidad ===
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true, // arr[0] es T | undefined, no T
+    "noImplicitOverride": true, // obliga a usar override en subclases
+    "noPropertyAccessFromIndexSignature": true,
+
+    // === Interop y consistencia ===
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    "rootDir": "./src",
+    "paths": {}
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.e2e-spec.ts"]
+}

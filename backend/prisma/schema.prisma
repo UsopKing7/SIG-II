@@ -1,0 +1,146 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TipoServicio {
+  CAFE
+  TIENDA
+  FARMACIA
+  BANIO
+  OTRO
+}
+
+enum ColorLinea {
+  ROJA
+  AMARILLA
+  VERDE
+  AZUL
+  NARANJA
+  BLANCA
+  CELESTE
+  MORADA
+  CAFE
+  PLATEADA
+}
+
+enum EstadoLinea {
+  ACTIVA
+  MANTENIMIENTO
+  CERRADA
+}
+
+enum EstadoIncidente {
+  ABIERTO
+  EN_REVISION
+  RESUELTO
+}
+
+model Linea {
+  id_linea          String @id @default(uuid())
+  nombre_linea      String
+  color             ColorLinea @unique
+  cantidad_cabinas  Int
+  estado            EstadoLinea @default(ACTIVA)
+
+  estaciones        LineaEstacion[]
+  postes            Poste[]
+  incidentes        Incidente[]
+
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Estacion {
+  id_estacion       String @id @default(uuid())
+  nombre            String
+  color             String
+  geom              Unsupported("geometry")
+
+  lineas            LineaEstacion[]
+  servicios         Servicio[]
+  accesibilidad     Accesibilidad?
+  imagenes          Imagen[]
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model LineaEstacion {
+  id_linea_estacion  String   @id @default(uuid())
+  id_linea           String
+  id_estacion        String
+
+  linea              Linea    @relation(fields: [id_linea], references: [id_linea])
+  estacion           Estacion @relation(fields: [id_estacion], references: [id_estacion])
+
+  @@unique([id_linea, id_estacion])
+}
+
+model Poste {
+  id_poste    String   @id @default(uuid())
+  id_linea    String
+  geom        Unsupported("geometry")
+
+  linea       Linea    @relation(fields: [id_linea], references: [id_linea])
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Servicio {
+  id_servicio   String   @id @default(uuid())
+  nombre        String
+  tipo          TipoServicio
+
+  id_estacion   String
+  estacion      Estacion @relation(fields: [id_estacion], references: [id_estacion])
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Accesibilidad {
+  id_accesibilidad  String   @id @default(uuid())
+  tiene_ascensor    Boolean  @default(false)
+  tiene_rampa       Boolean  @default(false)
+  tiene_banio       Boolean  @default(false)
+
+  id_estacion       String   @unique
+  estacion          Estacion @relation(fields: [id_estacion], references: [id_estacion])
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Imagen {
+  id_imagen    String   @id @default(uuid())
+  url          String
+  descripcion  String?
+
+  id_estacion  String
+  estacion     Estacion @relation(fields: [id_estacion], references: [id_estacion])
+
+  createdAt    DateTime @default(now())
+}
+
+model Incidente {
+  id_incidente  String          @id @default(uuid())
+  descripcion   String
+  estado        EstadoIncidente @default(ABIERTO)
+
+  id_linea      String
+  linea         Linea @relation(fields: [id_linea], references: [id_linea])
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

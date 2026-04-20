@@ -1,0 +1,18 @@
+export enum EnumColorLinea {
+  ROJA = 'ROJA',
+  AMARILLA = 'AMARILLA',
+  VERDE = 'VERDE',
+  AZUL = 'AZUL',
+  NARANJA = 'NARANJA',
+  BLANCA = 'BLANCA',
+  CELESTE = 'CELESTE',
+  MORADA = 'MORADA',
+  CAFE = 'CAFE',
+  PLATEADA = 'PLATEADA'
+}
+
+export enum EnumEstadoLinea {
+  ACTIVA = 'ACTIVA',
+  MANTENIMIENTO = 'MANTENIMIENTO',
+  CERRADA = 'CERRADA'
+}
