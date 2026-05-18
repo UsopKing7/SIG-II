@@ -5,3 +5,11 @@ export class Poligono {
     }
   }
 }
+
+export class Point {
+  constructor(public wkt: string) {
+    if (!wkt.startsWith('POINT')) {
+      throw new Error('Invalid WKT: must be POINT')
+    }
+  }
+}

@@ -21,15 +21,15 @@ enum TipoServicio {
 
 enum ColorLinea {
   ROJA // listo
-  AMARILLA // listo 
+  AMARILLA // listo
   VERDE // listo
   AZUL // listo
-  NARANJA // listo
-  BLANCA // listo
-  CELESTE // listo
+  NARANJA
+  BLANCA
+  CELESTE
   MORADA // listo
-  CAFE // listo
-  PLATEADA // listo
+  CAFE
+  PLATEADA
 }
 
 enum EstadoLinea {
