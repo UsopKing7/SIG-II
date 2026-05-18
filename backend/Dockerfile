@@ -7,5 +7,5 @@ RUN npm i --only=production
 COPY . .
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 3333
 CMD ["node", "dist/main"]

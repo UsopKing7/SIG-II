@@ -8,19 +8,19 @@ services:
       - .env
     command: ['./command.sh']
     depends_on:
-      - teleferico-db
+      - teleferico_db
 
-  teleferico-db:
-    container_name: teleferico-db
+  teleferico_db:
+    container_name: teleferico_db
     image: postgis/postgis:17-3.4
     ports:
       - 5433:5432
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: teleferico-db
+      POSTGRES_DB: teleferico_db
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata_teleferico:/var/lib/postgresql/data
 
 volumes:
-  pgdata:
+  pgdata_teleferico:
