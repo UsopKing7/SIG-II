@@ -24,6 +24,17 @@ CREATE TABLE "Linea" (
 );
 
 -- CreateTable
+CREATE TABLE "Cable" (
+    "id_cable" TEXT NOT NULL,
+    "id_linea" TEXT NOT NULL,
+    "geom" geometry NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Cable_pkey" PRIMARY KEY ("id_cable")
+);
+
+-- CreateTable
 CREATE TABLE "Estacion" (
     "id_estacion" TEXT NOT NULL,
     "nombre" TEXT NOT NULL,
@@ -111,6 +122,9 @@ CREATE UNIQUE INDEX "LineaEstacion_id_linea_id_estacion_key" ON "LineaEstacion"(
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Accesibilidad_id_estacion_key" ON "Accesibilidad"("id_estacion");
+
+-- AddForeignKey
+ALTER TABLE "Cable" ADD CONSTRAINT "Cable_id_linea_fkey" FOREIGN KEY ("id_linea") REFERENCES "Linea"("id_linea") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "LineaEstacion" ADD CONSTRAINT "LineaEstacion_id_linea_fkey" FOREIGN KEY ("id_linea") REFERENCES "Linea"("id_linea") ON DELETE RESTRICT ON UPDATE CASCADE;

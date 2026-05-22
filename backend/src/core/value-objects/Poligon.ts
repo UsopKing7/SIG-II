@@ -13,3 +13,11 @@ export class Point {
     }
   }
 }
+
+export class LineString {
+  constructor(public wkt: string) {
+    if (!wkt.startsWith('LINESTRING')) {
+      throw new Error('Invalid WKT: must be LINESTRING')
+    }
+  }
+}
