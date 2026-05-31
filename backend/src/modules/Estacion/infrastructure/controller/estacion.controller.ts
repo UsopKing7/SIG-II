@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Param, Post } from '@nestjs/common'
+import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common'
 import { EstacionService } from '../services/estacion.service'
 import { type EstacionDTOs } from 'modules/Estacion/application/dtos/estacion.dto'
 
@@ -13,5 +13,10 @@ export class EstacionController {
     @Body() data: EstacionDTOs.Create
   ): Promise<EstacionDTOs.PublicData> {
     return await this.estacionService.createEstacion({ ...data, id_linea })
+  }
+
+  @Get('estaciones')
+  async getEstaciones() {
+    return await this.estacionService.getEstacion()
   }
 }

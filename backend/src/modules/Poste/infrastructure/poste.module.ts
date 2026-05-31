@@ -5,6 +5,7 @@ import { CreatePosteUseCase } from '../application/usecase/createPoste.usecase'
 import { PostService } from './service/poste.service'
 import { POSTES_REPOSITORY } from 'shared/const/tokensNest'
 import { PostePrisma } from './prisma/poste.prisma'
+import { GetPostesUseCase } from '../application/usecase/getPostes.usecase'
 
 @Module({
   imports: [PrismaModule],
@@ -12,6 +13,7 @@ import { PostePrisma } from './prisma/poste.prisma'
   providers: [
     PostService,
     CreatePosteUseCase,
+    GetPostesUseCase,
     {
       provide: POSTES_REPOSITORY,
       useClass: PostePrisma

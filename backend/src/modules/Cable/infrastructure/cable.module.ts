@@ -5,6 +5,7 @@ import { CableService } from './service/cable.service'
 import { CreateCableUseCase } from '../application/usecase/createCable.usecase'
 import { CablePrisma } from './prisma/cable.prisma'
 import { CABLES_REPOSITORY } from 'shared/const/tokensNest'
+import { GetCableUseCase } from '../application/usecase/getCable.usecase'
 
 @Module({
   imports: [PrismaModule],
@@ -12,6 +13,7 @@ import { CABLES_REPOSITORY } from 'shared/const/tokensNest'
   providers: [
     CableService,
     CreateCableUseCase,
+    GetCableUseCase,
     {
       provide: CABLES_REPOSITORY,
       useClass: CablePrisma

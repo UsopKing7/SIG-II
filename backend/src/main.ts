@@ -4,6 +4,9 @@ import { env } from 'shared/const/env'
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule)
+  app.enableCors({
+    origin: '*'
+  })
   app.enableShutdownHooks()
   await app.listen(env.PORT)
   console.table({

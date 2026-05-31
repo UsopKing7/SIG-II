@@ -52,4 +52,17 @@ export class LineaPrisma implements ILineasRepository {
       estado: linea.estado as EnumEstadoLinea
     })
   }
+
+  async AllLineas(): Promise<Linea[]> {
+    const lineas = await this.prisma.db.linea.findMany()
+    return lineas.map(linea => {
+      return Linea.fromPersistence({
+        id_linea: linea.id_linea,
+        nombre_linea: linea.nombre_linea,
+        color: linea.color as EnumColorLinea,
+        cantidad_cabinas: linea.cantidad_cabinas,
+        estado: linea.estado as EnumEstadoLinea
+      })
+    })
+  }
 }

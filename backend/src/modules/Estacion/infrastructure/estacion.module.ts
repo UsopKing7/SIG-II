@@ -7,6 +7,7 @@ import { ESTACIONES_REPOSITORY } from 'shared/const/tokensNest'
 import { EstacionPrisma } from './prisma/estacion.prisma'
 import { LineaModule } from 'modules/Lineas/infrastructure/linea.module'
 import { LineaEstacionModule } from 'modules/LineaEstacion/infrastructure/lineaEstacion.module'
+import { GetEstacionUseCase } from '../application/usecase/getEstacion.usecase'
 
 @Module({
   imports: [PrismaModule, LineaModule, LineaEstacionModule],
@@ -14,6 +15,7 @@ import { LineaEstacionModule } from 'modules/LineaEstacion/infrastructure/lineaE
   providers: [
     EstacionService,
     CreateEstacionUseCase,
+    GetEstacionUseCase,
     {
       provide: ESTACIONES_REPOSITORY,
       useClass: EstacionPrisma

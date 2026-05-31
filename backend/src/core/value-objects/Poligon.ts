@@ -4,6 +4,10 @@ export class Poligono {
       throw new Error('Invalid WKT: must be POLYGON')
     }
   }
+
+  static create(wkt: string): Poligono {
+    return new Poligono(wkt)
+  }
 }
 
 export class Point {

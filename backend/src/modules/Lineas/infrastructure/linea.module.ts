@@ -6,6 +6,7 @@ import { CreateLineaUseCase } from '../application/usecase/create-linea.usecase'
 import { LINEAS_REPOSITORY } from 'shared/const/tokensNest'
 import { LineaPrisma } from './prisma/linea.prisma'
 import { FindLineaUseCase } from '../application/usecase/find-linea.usecase'
+import { AllLineasUseCase } from '../application/usecase/allLineas.usecase'
 
 @Module({
   imports: [PrismaModule],
@@ -14,6 +15,7 @@ import { FindLineaUseCase } from '../application/usecase/find-linea.usecase'
     LineaService,
     CreateLineaUseCase,
     FindLineaUseCase,
+    AllLineasUseCase,
     {
       provide: LINEAS_REPOSITORY,
       useClass: LineaPrisma

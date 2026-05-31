@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Param, Post } from '@nestjs/common'
+import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common'
 import { CableService } from '../service/cable.service'
 import { type CableCommand } from 'modules/Cable/application/commands/cable.command'
 
@@ -10,5 +10,10 @@ export class CableController {
   @HttpCode(201)
   async createCable(@Param('id_linea') id_linea: string, @Body() data: CableCommand.Create) {
     return await this.cableService.createCable({ ...data, id_linea })
+  }
+
+  @Get()
+  async getCable() {
+    return await this.cableService.getCable()
   }
 }

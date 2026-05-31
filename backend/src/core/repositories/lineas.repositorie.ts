@@ -5,4 +5,5 @@ export abstract class ILineasRepository {
   abstract createLinea(data: Linea): Promise<Linea>
   abstract findLineaByColor(color: EnumColorLinea): Promise<boolean>
   abstract findLineaById(id_linea: string): Promise<Linea | null>
+  abstract AllLineas(): Promise<Linea[]>
 }

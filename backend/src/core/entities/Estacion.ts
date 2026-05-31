@@ -14,7 +14,7 @@ export class Estacion {
     return new Estacion(
       props.nombre,
       props.color,
-      new Poligono(props.geom.wkt),
+      Poligono.create(props.geom.wkt),
       props.id_estacion ?? uuidv4()
     )
   }
