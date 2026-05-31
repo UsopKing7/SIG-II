@@ -432,8 +432,7 @@ export const App: React.FC = () => {
       return;
     }
 
-    mapboxgl.accessToken =
-      "";
+    mapboxgl.accessToken = "";
 
     // Calcular centro
     let sumLng = 0,
