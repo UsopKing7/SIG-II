@@ -320,7 +320,6 @@ export const App: React.FC = () => {
 
       return newState;
     });
-
     if (!map.current) return;
 
     switch (capa) {
@@ -432,7 +431,7 @@ export const App: React.FC = () => {
       return;
     }
 
-    mapboxgl.accessToken = "";
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || "";
 
     // Calcular centro
     let sumLng = 0,
